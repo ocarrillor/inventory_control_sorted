@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Control de Inventario</h1>
+    <form>
+        <div>
+        <h2>Agregar o Insertar</h2>
+        Codigo: <input id="idA" type="number" style="margin-right: 2%;">
+        Nombre: <input id="name" type="text" style="margin-right: 2%;">
+        Cantidad: <input id="amount" type="number" style="margin-right: 2%;">
+        Costo: <input id="cost" type="number" style="margin-right: 2%;">
+        <input id="btnAdd" type="button" value="Agregar"> <br><br><br>
+        </div>
+
+        <div>
+            <h2>Eliminar</h2>
+            Codigo de producto: <input id="idE" type="text" style="margin-right: 2%;">
+            <input id="btnDelete" type="button" value="Eliminar">
+        </div>
+
+        <div>
+            <h2>Buscar</h2>
+            Codigo de producto: <input id="idB" type="text" style="margin-right: 2%;">
+            <input id="btnSearch" type="button" value="Buscar">
+        </div>
+
+        <div>
+            <h2>Listar todos los productos</h2>
+            <input id="btnNormalO" type="button" value="Orden normal">
+            <input id="btnReverseO" type="button" value="Orden inverso">
+        </div>
+    </form>
+
+    <div id='detalles'>
+ 
+    </div>
+
+    <script src="main.js" type="module"></script>
+</body>
+</html>
