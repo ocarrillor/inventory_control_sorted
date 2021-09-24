@@ -6,13 +6,12 @@ class Product{
         this.cost = Number(cost);
     }
 
+    getValue(){
+        return this.amount * this.cost;
+    }
+
     infoHTML(){
-        return `<section>
-            <div>
-                <p>La info es</p>
-                    <p>${this.dato}</p>
-            </div>
-        </section>`;
+        return `<p>${this.id}  ${this.name}  $${this.amount}  $${this.cost}  $${this.getValue()}</p>`;
     }
 }
 
@@ -33,11 +32,11 @@ class Inventory{
                         this.products[j] = this.products[j-1];
                     }
                     this.products[i] = prod;
-                    return prod.infoHTML();
+                    return prod;
                 }
             }
             this.products.push(prod);
-            return prod.infoHTML();
+            return prod;
         }
     }
 
@@ -67,24 +66,40 @@ class Inventory{
         let pos = this._searchPos(id);
 
         if (pos >= 0){
+            let prod = this.products[pos];
             for (let i = pos; i < this.products.length-1; i++){
                 this.products[i] = this.products[i+1];
             }
-            return this.products.pop();
+            this.products.pop();
+            return prod;
         }else{
             return null;
         }
     }
 
-    listar(){
-        return 'cantidad de elementos html';
+    listN(){
+        let list = '';
+        for(let i = 0; i < this.products.length; i++){
+            list +=  this.products[i].infoHTML();
+        }
+
+        return list;
+    }
+
+    listR(){
+        let list = '';
+        for(let i = this.products.length - 1; i >= 0 ; i--){
+            list += this.products[i].infoHTML();
+        }
+
+        return list;
     }
 }
 
 class Interface{
     show(info){
         let details=document.getElementById('detalles');
-        details.innerHTML = info.infoHTML();
+        details.innerHTML = `<br> La info es: <br> ${info}`;
     }
 }
 
@@ -97,6 +112,27 @@ btnAdd.addEventListener('click',()=>{
     let amount = document.getElementById('amount').value;
     let cost = document.getElementById('cost').value;
     let product = new Product(id, name, amount, cost);
-    invent.add(product);
-    ui.show(product);
+    ui.show(invent.add(product).infoHTML());
+});
+
+const btnDelete=document.getElementById('btnDelete');
+btnDelete.addEventListener('click',()=>{
+    let id = document.getElementById('idE').value;
+    ui.show(invent.delete(id).infoHTML());
+});
+
+const btnSearch=document.getElementById('btnSearch');
+btnSearch.addEventListener('click',()=>{
+    let id = document.getElementById('idB').value;
+    ui.show(invent.search(id).infoHTML());
+});
+
+const btnNormalO=document.getElementById('btnNormalO');
+btnNormalO.addEventListener('click',()=>{
+    ui.show(invent.listN());
+});
+
+const btnReverseO=document.getElementById('btnReverseO');
+btnReverseO.addEventListener('click',()=>{
+    ui.show(invent.listR());
 });
