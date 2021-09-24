@@ -21,7 +21,7 @@ class Inventory{
     }
 
     add(prod){
-        if(this._searchPos(prod.id) >= 0){
+        if(this._searchPos(prod.id) >= 0 || this.products.length == 20){
             return null;
         }else{
             length = this.products.length;
